@@ -85,10 +85,10 @@ class LedVisualizer {
 
     onMessage(event) {
         const dataView = new DataView(event.data);
-        leds = dataView.byteLength / COLORS_PER_LED;
+        const leds = dataView.byteLength / COLORS_PER_LED;
         this.spacing = this.canvas.width / leds;
 
-        for (let i = 0; i < LEDS_NUM; i += 1) {
+        for (let i = 0; i < leds; i += 1) {
             const color = this.dataViewToColor(dataView, i);
             this.drawRect((i * this.spacing) + (this.spacing / 2), this.drawY, DRAW_CIRCLE_RADIUS, color);
         }
